@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import _ from 'lodash';
-import './App.scss';
+import React, { Component } from 'react'
+import _ from 'lodash'
+import './App.scss'
 
-import FarmCards from './FarmCards';
+import FarmCards from './FarmCards'
 
 class App extends Component {
   constructor(props) {
@@ -20,8 +20,8 @@ class App extends Component {
       <div className="App">
         <FarmCards farmCards={this.state.farmCards} />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
