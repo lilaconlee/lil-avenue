@@ -1,0 +1,38 @@
+@import 'variables';
+
+.farm-cards-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+
+  .farm-cards {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .farm-controls {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .farm-controls-buttons {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5px;
+  }
+}
+
+.card.farm {
+  background: $yellow;
+
+  &.peek {
+    background: $white;
+    box-sizing: border-box;
+    border: 4px $yellow dashed;
+    margin-right: 30px;
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
