@@ -7,7 +7,6 @@ import './FarmCards.scss'
 class FarmCards extends Component {
   constructor(props) {
     super(props)
-    this.peekRef = React.createRef()
     this.state = {
       visibleFarms: [props.farmCards[0]],
       hiddenFarms: _.drop(props.farmCards),
