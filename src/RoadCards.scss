@@ -1,0 +1,41 @@
+@import 'variables';
+
+.road-cards-wrapper {
+  height: 100%;
+  padding: 10px;
+
+  display: flex;
+  justify-content: space-between;
+
+  .road-cards div {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .road-controls {
+    padding-top: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+button.new-game {
+  background: $red;
+}
+
+.card.road {
+  background: $gray;
+  font-size: 36px; 
+  padding-left: 5px;
+  width: $card-size - 5px;
+
+  &.yellow {
+    background: $yellow;
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
