@@ -50,4 +50,16 @@ describe('farm-cards', () => {
     cy.get('.card.farm.peek')
       .should('not.be.visible')
   })
+
+  it('new farm card clears road cards', () => {
+    cy.contains('button', 'New Road Card')
+      .click()
+
+    cy.get('.card.road').should('have.length', 1)
+
+    cy.contains('button', 'New Farm Card')
+      .click()
+
+    cy.get('.card.road').should('have.length', 0)
+  })
 })
