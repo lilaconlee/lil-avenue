@@ -7,64 +7,21 @@ import './RoadCards.scss'
 class RoadCards extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      grayRoads: [],
-      yellowRoads: [],
-      queuedRoads: props.roadCards
-    }
-  }
-
-  onNewCard = () => {
-    const grayRoads = [] 
-    const yellowRoads = [] 
-    let queuedRoads = _.clone(this.state.queuedRoads)
-    let count = 4
-
-    while (count !== 0) {
-      const card = _.head(queuedRoads)
-
-      if (card.color === 'yellow') {
-        yellowRoads.push(card)
-        count--
-      } else {
-        grayRoads.push(card)
-      }
-
-      queuedRoads = _.drop(queuedRoads)
-    }
-
-    this.setState({
-      grayRoads,
-      yellowRoads,
-      queuedRoads
-    })
   }
 
   render() {
-     const yellowRoads = this.state.yellowRoads.map((road) => {
-       let classname = classNames({
-         hidden: false,
-         'card': true,
-         'road': true,
-         'yellow': true
-       })
+    const { grayCards, yellowCards, onNewRoadCard, onNewGame } = this.props
+    const yellowRoads = yellowCards.map((card) => {
+      let classname = `card road yellow ${card.type}`
 
-       classname += ` ${road.type}`
+      return <div key={_.uniqueId()} className={classname}>{card.type}</div>
+    })
+    const grayRoads = grayCards.map((card) => {
+      let classname = `card road ${card.type}`
 
-       return <div key={_.uniqueId()} className={classname}>{road.type}</div>
-     })
+      return <div key={_.uniqueId()} className={classname}>{card.type}</div>
+    })
 
-     const grayRoads = this.state.grayRoads.map((road) => {
-       let classname = classNames({
-         hidden: false,
-         'card': true,
-         'road': true
-       })
-
-       classname += ` ${road.type}`
-
-       return <div key={_.uniqueId()} className={classname}>{road.type}</div>
-     })
 
     return (
       <div className="road-cards-wrapper">
@@ -73,8 +30,8 @@ class RoadCards extends Component {
           <div className="yellow-road-cards">{yellowRoads}</div>
         </div>
         <div className="road-controls">
-            <button type="button" onClick={this.onNewCard}>New Road Card</button>
-            <button type="button" className="new-game" onClick={this.onNewGame}>New Game</button>
+            <button type="button" onClick={onNewRoadCard}>New Road Card</button>
+            <button type="button" className="new-game" onClick={onNewGame}>New Game</button>
         </div>
       </div>
     )
