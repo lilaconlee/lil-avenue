@@ -1,9 +1,11 @@
 @import 'variables';
 
 .farm-cards-wrapper {
+  padding: 10px;
+
+  flex: 0 1 auto;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
 
   .farm-cards {
     display: flex;

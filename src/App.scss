@@ -1,5 +1,10 @@
 @import 'variables';
 
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
 body {
    font-family: $font-roboto;
  }
