@@ -37,8 +37,6 @@ button.new-game {
 .card.road {
   background: $gray;
   font-size: 36px; 
-  padding-left: 5px;
-  width: $card-size - 5px;
 
   &.yellow {
     background: $yellow;
@@ -46,5 +44,50 @@ button.new-game {
 
   &.hidden {
     display: none;
+  }
+
+  span {
+    position: absolute;
+    padding-left: 6px;
+  }
+
+  .img-wrapper {
+    width: $card-size;
+  }
+
+  img {
+    margin-top: -1px;
+  }
+
+  .one {
+    align-self: flex-start;
+    margin-top: 0.5px;
+    transform: rotate(90deg);
+  }
+
+  .two {
+    align-self: flex-start;
+    margin-left: $card-size/2 - 5px;
+    margin-top: 0.5px;
+    transform: rotate(180deg);
+  }
+
+  .three {
+    align-self: flex-end;
+    margin-left: $card-size/2 - 5px;
+    transform: rotate(-90deg);
+  }
+
+  .four {
+    align-self: flex-end;
+  }
+
+  .five {
+    margin-left: $card-size/2 - 6px;
+    transform: rotate(90deg);
+  }
+
+  .six {
+    margin-left: $card-size/2 - 5px;
   }
 }
