@@ -9,12 +9,15 @@
 
   .road-cards {
     display: flex;
+    flex: 0 1 auto;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: space-between;
 
     div {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
     }
   }
 
