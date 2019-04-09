@@ -25,6 +25,9 @@
 .card.farm {
   background: $yellow;
 
+  align-items: center;
+  justify-content: center;
+
   &.peek {
     background: $white;
     box-sizing: border-box;

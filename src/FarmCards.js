@@ -27,7 +27,7 @@ class FarmCards extends Component {
 
       classname += ` ${card}`
 
-      return <div key={card} className={classname}>{card}</div>
+      return <div key={card} className={classname}><span>{card}</span></div>
     })
     const peekClassName = classNames({
       hidden: !this.state.peek,

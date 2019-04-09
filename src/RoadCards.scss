@@ -7,9 +7,15 @@
   display: flex;
   justify-content: space-between;
 
-  .road-cards div {
+  .road-cards {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: space-between;
+
+    div {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   .road-controls {
