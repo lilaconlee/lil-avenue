@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import classNames from 'classnames'
 import converter from 'number-to-words'
 
 import './RoadCards.scss'
@@ -18,13 +17,9 @@ const cardTypeSvg = {
 }
 
 class RoadCards extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   getRoadSvg(cardType) {
     const num = converter.toWords(cardType)
-    return <div className="img-wrapper"><img className={num} src={cardTypeSvg[num]} /></div>
+    return <div className="img-wrapper"><img className={num} alt="" src={cardTypeSvg[num]} /></div>
   }
 
   render() {
