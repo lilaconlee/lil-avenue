@@ -19,12 +19,7 @@ class FarmCards extends Component {
 
   render() {
     const farmCards = this.props.farmCards.map((card) => {
-      let classname = classNames({
-        'card': true,
-        'farm': true
-      })
-
-      classname += ` ${card}`
+      const classname = `card farm ${card}`
 
       return <div key={card} className={classname}><span>{card}</span></div>
     })
