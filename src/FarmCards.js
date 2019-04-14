@@ -29,15 +29,16 @@ class FarmCards extends Component {
       'card': true,
       'farm': true
     })
+    const { nextFarmCard, nextCardType, onNewFarmCard } = this.props
 
     return (
       <div className="farm-cards-wrapper">
         <div className="farm-cards">{farmCards}</div>
         <div className="farm-controls">
-          <div className={peekClassName}>{this.props.nextFarmCard}</div>
+          <div className={peekClassName}>{nextFarmCard}</div>
           <div className="farm-controls-buttons">
-            <button type="button" onClick={this.onPeek}>Peek</button>
-            <button type="button" onClick={this.props.onNewFarmCard}>New Farm Card</button>
+            <button type="button" disabled={!nextFarmCard} onClick={this.onPeek}>Peek</button>
+            <button type="button" disabled={!(nextCardType === 'farm')} onClick={onNewFarmCard}>New Farm Card</button>
           </div>
         </div>
       </div>

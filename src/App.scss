@@ -21,14 +21,23 @@ body {
 }
 
 button {
+  background: $blue;
   border-radius: $b-radius;
+  border: none;
+  color: $white;
   font-family: $font-roboto;
   font-size: 18px;
-  color: $white;
-  background: $blue;
-  border: none;
   height: 50px;
-  width: 150px;
   margin-bottom: 6px;
   margin-right: 5px;
+  transitions: 2s;
+  width: 150px;
+
+  &:hover {
+    background: darken($blue, $btn-hover);
+  }
+
+  &:disabled {
+    background: $btn-disabled;
+  }
 }

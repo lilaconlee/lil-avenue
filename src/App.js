@@ -23,7 +23,8 @@ class App extends Component {
       farmCardsQueue,
       roadCards: this.generateRoadCards(),
       yellowCards: [],
-      grayCards: []
+      grayCards: [],
+      nextCardType: 'road'
     }
   }
 
@@ -67,8 +68,11 @@ class App extends Component {
   onNewFarmCard = () => {
     let farmCards = this.state.farmCards
     let farmCardsQueue = this.state.farmCardsQueue
+    let nextCardType = 'road'
 
-    if (farmCards.length === 5) { return }
+    if (farmCards.length === 5) { 
+      return
+    }
 
     farmCards.push(_.head(farmCardsQueue))
     farmCardsQueue = _.drop(farmCardsQueue)
@@ -77,18 +81,25 @@ class App extends Component {
       farmCards,
       farmCardsQueue,
       yellowCards: [],
-      grayCards: []
+      grayCards: [],
+      nextCardType
     })
   }
 
   onNewRoadCard = () => {
     const nextCard = _.head(this.state.roadCards)
-    let { yellowCards, grayCards } = this.state
-
-    if (yellowCards.length === 4) { return }
+    let { yellowCards, grayCards, farmCards } = this.state
+    let nextCardType = 'road'
 
     if (nextCard.color === 'yellow') {
       yellowCards.push(nextCard)
+
+      if (yellowCards.length === 4) { 
+        nextCardType = 'farm'
+        if (farmCards.length === 5) {
+          nextCardType = 'none'
+        }
+      }
     } else {
       grayCards.push(nextCard)
     }
@@ -96,7 +107,8 @@ class App extends Component {
     this.setState({
       roadCards: _.drop(this.state.roadCards),
       yellowCards,
-      grayCards
+      grayCards,
+      nextCardType
     })
   }
 
@@ -107,8 +119,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FarmCards farmCards={this.state.farmCards} nextFarmCard={_.head(this.state.farmCardsQueue)} onNewFarmCard={this.onNewFarmCard}/>
-        <RoadCards yellowCards={this.state.yellowCards} grayCards={this.state.grayCards} onNewRoadCard={this.onNewRoadCard} onNewGame={this.onNewGame} />
+        <FarmCards farmCards={this.state.farmCards} nextFarmCard={_.head(this.state.farmCardsQueue)} nextCardType={this.state.nextCardType} onNewFarmCard={this.onNewFarmCard}/>
+        <RoadCards yellowCards={this.state.yellowCards} grayCards={this.state.grayCards} nextCardType={this.state.nextCardType} onNewRoadCard={this.onNewRoadCard} onNewGame={this.onNewGame} />
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
+import classNames from 'classnames'
 import converter from 'number-to-words'
 
 import './RoadCards.scss'
@@ -23,7 +24,11 @@ class RoadCards extends Component {
   }
 
   render() {
-    const { grayCards, yellowCards, onNewRoadCard, onNewGame } = this.props
+    const { grayCards, yellowCards, nextCardType, onNewRoadCard, onNewGame } = this.props
+    const newGameClasses = classNames({
+      'new-game': true,
+      'game-over': nextCardType === 'none'
+    })
     const yellowRoads = yellowCards.map((card) => {
       let classname = `card road yellow ${card.type}`
 
@@ -43,8 +48,8 @@ class RoadCards extends Component {
           <div className="yellow-road-cards">{yellowRoads}</div>
         </div>
         <div className="road-controls">
-            <button type="button" onClick={onNewRoadCard}>New Road Card</button>
-            <button type="button" className="new-game" onClick={onNewGame}>New Game</button>
+            <button type="button" disabled={!(nextCardType === 'road')} onClick={onNewRoadCard}>New Road Card</button>
+            <button type="button" className={newGameClasses} onClick={onNewGame}>New Game</button>
         </div>
       </div>
     )

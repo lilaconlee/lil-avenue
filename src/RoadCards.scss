@@ -31,7 +31,19 @@
 }
 
 button.new-game {
-  background: $green;
+  background: $red;
+
+  &:hover {
+    background: darken($red, $btn-hover);
+  }
+
+  &.game-over {
+    background: $green;
+
+    &:hover {
+      background: darken($green, $btn-hover);
+    }
+  }
 }
 
 .card.road {
