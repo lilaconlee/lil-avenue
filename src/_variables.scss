@@ -6,7 +6,8 @@ $red: #EB5757;
 $white: #FFFFFF;
 $yellow: #F2C94C;
 
-$btn-disabled: #AEBCC0;
+$btn-disabled: $gray;
+$btn-color-disabled: darken($white, 5%);
 
 // Fonts
  @import url('https://fonts.googleapis.com/css?family=Roboto:500');
