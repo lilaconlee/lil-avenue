@@ -31,8 +31,10 @@ A, B, C, D, E, and F
 
 ### Yellow scoring road cards (22):
 Four of each: 1, 2, 3, and 4 (corner roads)
+
 Three of each: 5 and 6 (straight roads)
 
-###Gray road cards (20):
+### Gray road cards (20):
 Three of each: 1, 2, 3, and 4 (corner roads)
+
 Four of each: 5 and 6 (straight roads)
