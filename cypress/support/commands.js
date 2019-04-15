@@ -3,6 +3,11 @@ Cypress.Commands.add("dealRoadCard", () => {
     .click()
 })
 
+Cypress.Commands.add("dealFarmCard", () => {
+  cy.contains('button', 'New Farm Card')
+    .click()
+})
+
 Cypress.Commands.add("dealFourYellowCards", () => {
   cy.get('.yellow-road-cards').then(($cards) => {
     if ($cards.children().length < 4) {
@@ -11,4 +16,9 @@ Cypress.Commands.add("dealFourYellowCards", () => {
     }
     return
   })
+})
+
+Cypress.Commands.add("dealFullGame", () => {
+  cy.dealFourYellowCards()
+  cy.dealFarmCard()
 })

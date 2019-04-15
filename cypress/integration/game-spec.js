@@ -1,79 +1,69 @@
-describe('lil-avenue', () => {
+describe('lil-avenue game play', () => {
   beforeEach(() => {
     cy.visit('.')
   })
 
-  describe('farm-cards', () => {
-    it('loads initial farm card then disables farm cards', () => {
-      cy.get('.card.farm')
-        .first()
-        .should('be.visible')
-        .next()
-        .should('not.be.visible')
+  it('loads initial farm card then disables farm cards', () => {
+    cy.get('.farm-cards')
+    .children()
+    .should('have.length', 1)
 
-      cy.contains('button', 'New Farm Card')
-        .should('be.disabled')
-    })
-
-    it('enables farm cards when there are four yellow cards', () => {
-      cy.dealFourYellowCards()
-    })
-
-    it('peeks', () => {
-      cy.get('.card.farm.peek')
-        .should('not.be.visible')
-
-      cy.contains('button', 'Peek')
-        .click()
-
-      cy.get('.card.farm.peek')
-        .should('be.visible')
-        
-      cy.contains('button', 'Peek')
-        .click()
-
-      cy.get('.card.farm.peek')
-        .should('not.be.visible')
-    })
-
-    it('doesnt peek with max cards', () => {
-      cy.contains('button', 'New Farm Card')
-        .click()
-        .click()
-        .click()
-        .click()
-
-      cy.contains('button', 'Peek')
-        .click()
-
-      cy.get('.card.farm.peek')
-        .should('not.be.visible')
-    })
-
-    it('new farm card clears road cards', () => {
-      cy.contains('button', 'New Road Card')
-        .click()
-
-      cy.get('.card.road').should('have.length', 1)
-
-      cy.contains('button', 'New Farm Card')
-        .click()
-
-      cy.get('.card.road').should('have.length', 0)
-    })
+    cy.contains('button', 'New Farm Card')
+    .should('be.disabled')
   })
 
-  describe('road-cards', () => {
-    it('loads road cards', () => {
-      cy.dealRoadCard()
+  it('deals road cards until there are four yellow cards', () => {
+    cy.get('.card.road.yellow').should('have.length', 0)
+    cy.contains('button', 'New Road Card').should('be.enabled')
+    cy.contains('button', 'New Farm Card').should('be.disabled')
 
-      cy.get('.card.road').should('have.length', 1)
+    cy.dealFourYellowCards()
+
+    cy.get('.card.road.yellow').should('have.length', 4)
+    cy.contains('button', 'New Road Card').should('be.disabled')
+    cy.contains('button', 'New Farm Card').should('be.enabled')
+
+    cy.dealFarmCard()
+
+    cy.get('.farm-cards')
+    .children()
+    .should('have.length', 2)
+  })
+
+  it('new farm card clears road cards', () => {
+    cy.dealFourYellowCards()
+    cy.get('.card.road').should('not.have.length', 0)
+
+    cy.dealFarmCard()
+    cy.get('.card.road').should('have.length', 0)
+  })
+
+  context('peek', () => {
+    it('button toggles peek card', () => {
+      cy.get('.card.peek')
+      .as('peek-card')
+      .should('not.be.visible')
+
+      cy.contains('button', 'Peek')
+      .click()
+
+      cy.get('@peek-card')
+      .should('be.visible')
+
+      cy.contains('button', 'Peek')
+      .click()
+
+      cy.get('@peek-card')
+      .should('not.be.visible')
     })
 
-    it.only('disables button after four yellow cards are dealt', () => {
-      cy.dealFourYellowCards()
+    it('is disabled when five farm cards are dealt', () => {
+      for (let i = 0; i < 4; i++) {
+        cy.dealFullGame()
+      }
 
-      cy.get('.card.road').should('have.length', 4)
+      cy.contains('button', 'Peek')
+      .should('be.disabled')
     })
   })
 })
