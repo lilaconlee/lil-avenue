@@ -30,12 +30,12 @@ class RoadCards extends Component {
       'game-over': nextCardType === 'none'
     })
     const yellowRoads = yellowCards.map((card) => {
-      let classname = `card road yellow ${card.type}`
+      let classname = `card road yellow`
 
       return <div key={_.uniqueId()} className={classname}><span>{card.type}</span>{this.getRoadSvg(card.type)}</div>
     })
     const grayRoads = grayCards.map((card) => {
-      let classname = `card road ${card.type}`
+      let classname = `card road`
 
       return <div key={_.uniqueId()} className={classname}><span>{card.type}</span>{this.getRoadSvg(card.type)}</div>
     })
