@@ -66,8 +66,8 @@ class App extends Component {
   }
 
   onNewFarmCard = () => {
-    let farmCards = this.state.farmCards
-    let farmCardsQueue = this.state.farmCardsQueue
+    let farmCards = _.clone(this.state.farmCards)
+    let farmCardsQueue = _.clone(this.state.farmCardsQueue)
     let nextCardType = 'road'
 
     if (farmCards.length === 5) { 
